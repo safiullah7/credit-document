@@ -1,0 +1,21 @@
+﻿.heading {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+    color: rgba(0, 0, 0, 0.61);
+}
+
+.document-icon {
+    width: 30px;
+    height: 30px;
+}
+
+
+.folder-icon {
+    width: 35px;
+    height: 35px;
+   
+}
+.right-icon {
+    color: darkred;
+}

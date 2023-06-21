@@ -1,0 +1,36 @@
+﻿.filter-item-heading {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #111B2B;
+}
+
+.dropdown-activator {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-button {
+    cursor: pointer;
+    color: #870AA0;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.check-label-custom {
+    color: #1D1B20;
+    font-size: 16px;
+}
+
+.dropdown-activator-text {
+    font-weight: 600;
+    font-size: 18px;
+    color: #000000;
+    padding-left: 23px;
+}
+
+.arrow {
+    width: 13px;
+}

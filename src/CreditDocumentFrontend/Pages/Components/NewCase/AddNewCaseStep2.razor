@@ -1,0 +1,131 @@
+﻿<div>
+    <div class="d-flex gap-2">
+        <EditForm Model="@_newPerson" OnValidSubmit="@HandleValidSubmit">
+            <DataAnnotationsValidator/>
+            @* <Microsoft.AspNetCore.Components.Forms.ValidationSummary/> *@
+
+            <div class="d-flex gap-2 align-items-center">
+                <div class="d-flex justify-content-center flex-column">
+                    <div class="d-flex gap-2 mb-3">
+                        <div>
+                            <span class="ml-1 fw-700 text-md font-color-2">Name</span>
+                            <TextEdit @bind-Text="_newPerson.Name"
+                                      Style="border-radius: 14px;"
+                                      Placeholder="Name"/>
+                            <ValidationMessage For="@(() => _newPerson.Name)"/>
+                        </div>
+                        <div>
+                            <span class="ml-1 fw-700 text-md font-color-2">Last Name</span>
+                            <TextEdit @bind-Text="_newPerson.Name"
+                                      Style="border-radius: 14px;"
+                                      Placeholder="Last Name"/>
+                            <ValidationMessage For="@(() => _newPerson.Name)"/>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column gap-2 mb-3">
+                        <span class="ml-1 fw-700 text-md font-color-2">E Post Address</span>
+                        <TextEdit @bind-Text="_newPerson.Name"
+                                  Style="border-radius: 14px;"
+                                  Placeholder="E Post Address"/>
+
+                        <ValidationMessage For="@(() => _newPerson.Name)"/>
+                    </div>
+                    <div class="d-flex flex-column gap-2 mb-3">
+                        <span class="ml-1 fw-700 text-md font-color-2">Personal Number</span>
+                        <TextEdit @bind-Text="_newPerson.PersonalNumber"
+                                  Style="border-radius: 14px;"
+                                  Placeholder="Personal Number"/>
+
+                        <ValidationMessage For="@(() => _newPerson.PersonalNumber)"/>
+                    </div>
+                </div>
+                <Button Type="ButtonType.Submit"
+                        Class="d-flex justify-content-center align-items-center"
+                        Style="height: 40px; width: 54px; border-radius: 6px; border: 1px solid #F4F4F4; background: #F4F4F4;">
+                    <img src="/images/add-person-icon.svg"/>
+                </Button>
+            </div>
+        </EditForm>
+        <div class="person-list-box">
+            @foreach (var person in CreditDocument.Guarantors)
+            {
+                <p>@person.Name</p>
+            }
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <Button Style="width: 81px; height: 40px;border-radius: 6px; border: 1px solid #870AA0; background: #870AA0; padding: 0px 16px; color: white;"
+                Class="d-flex justify-content-center align-items-center">
+            Tillbacka
+        </Button>
+
+        <div class="action-buttons mt-3">
+            <Button Clicked="CloseModalNow">Avbryt</Button>
+            <Button Class="secondary-button">
+                Spara & stänga
+            </Button>
+            <Button Style="width: 81px; height: 40px;border-radius: 6px; border: 1px solid #870AA0; background: #870AA0; padding: 0px 16px; color: white;"
+                    Class="d-flex justify-content-center align-items-center"
+                    Clicked="OnClickNext">
+                Next
+            </Button>
+        </div>
+    </div>
+</div>
+
+@* <div class="form-body2" style="align-items: flex-start !important;padding-left: 0 !important;"> *@
+@*     <div class="d-flex flex-column gap-2 mr-3"> *@
+@*         <span class="ml-1 fw-700 text-md font-color-2">Namn</span> *@
+@*         <TextEdit @bind-Text="CreditDocument.Guarantors[0].Name" *@
+@*                   Style="border-radius: 14px;" *@
+@*                   Placeholder="Förnamn"/> *@
+@*     </div> *@
+@* *@
+@*     <div class="d-flex flex-column gap-2 mb-3"> *@
+@*         <span class="ml-1 fw-700 text-md font-color-2">Personnummer</span> *@
+@*         <TextEdit @bind-Text="CreditDocument.Signatories[0].PersonalNumber" *@
+@*                   Style="border-radius: 14px;" *@
+@*                   Placeholder="Personnummer"/> *@
+@*     </div> *@
+@*     <div class="d-flex flex-column gap-2 mb-3"> *@
+@*         <span class="ml-1 fw-700 text-md font-color-2">E-post adress</span> *@
+@*         <TextEdit @bind-Text="CreditDocument.Guarantors[0].Email" *@
+@*                   Style="border-radius: 14px;" *@
+@*                   Placeholder="E-post adress"/> *@
+@*     </div> *@
+@* <div class="d-flex flex-column gap-2 mb-3"> *@
+@*     <span class="ml-1 fw-700 text-md font-color-2">Upload Attachments</span> *@
+@* *@
+@*     <FileEdit Multiple="true" Changed="@OnFileChanged"/> *@
+@* *@
+@*     @foreach (var attachment in CreditDocument.Attachments) *@
+@*     { *@
+@*         <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;"> *@
+@*             <span>@attachment.FileName</span> *@
+@*             <Button Color="Color.Danger" Clicked="@(() => RemoveFile(attachment))" *@
+@*                     Style=" padding: 2px 5px;font-size: 10px;line-height: 1;"> *@
+@*                 X *@
+@*             </Button> *@
+@*         </div> *@
+@*     } *@
+@* *@
+@*     <Button Color="Color.Secondary" Clicked="@AddItem"> *@
+@*         Add *@
+@*     </Button> *@
+@* </div> *@
+
+
+@* </div> *@
+@* <div class="list-g"> *@
+@*     <div> *@
+@* @foreach (var item in AddedItems) *@
+@* { *@
+@*     <span>@item.Item1</span> *@
+@*     <!-- This will display the Guarantor's name --> *@
+@*     <span>@item.Item2</span> *@
+@*     <!-- This will display the Guarantor's Email --> *@
+@*     <span>@item.Item3.FileName</span> *@
+@*     <!-- This will display the uploaded file name --> *@
+@* } *@
+@*     </div> *@
+@* </div> *@

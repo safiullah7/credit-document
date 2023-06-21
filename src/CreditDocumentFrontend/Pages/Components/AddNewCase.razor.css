@@ -1,0 +1,82 @@
+﻿/*.upload-card {
+    width: 150%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 2px dashed #D0D0D0;
+    border-radius: 10px;
+    background-color: #F7F9FA;
+}
+
+.upload-icon {
+    font-size: 50px;
+    color: #D0D0D0;
+}
+
+.upload-instructions {
+    margin-top: 10px;
+    text-align: center;
+    color: #666666;
+}
+
+.dropdowns {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.50rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.dropdown-activator-text {
+    flex-grow: 1;
+}
+
+.arrows {
+    height: 1rem;*/ /* adjust as needed */
+    /*width: 1rem;*/ /* adjust as needed */
+/*}
+
+.guarantor, .sign, .s-number {
+    width: 65%;
+    margin-bottom: 5px;
+    margin-left: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+    .guarantor .field-label-custom, .sign .field-label-custom, .s-number .field-label-custom {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .guarantor .field-input-custom, .sign .field-input-custom, .s-number .field-input-custom {
+        width: 50%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }*/
+
+
+
+.add-new-case {
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 14px;
+}

@@ -1,0 +1,83 @@
+﻿@using SharedModels
+@inject CreditDocumentFrontend.Services.CreditDocumentService CreditDocumentService
+@inject ILogger<CreditDocumentDialog> Log
+
+<div class="modal" style="display: @(IsOpen ? "block" : "none")">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Credit Document</h5>
+                <button type="button" class="close" @onclick="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if (CreditDocument != null)
+                {
+                    <label>
+                        Lånenummer / ärendenummer:
+                        <input readonly type="text" @bind="CreditDocument.LoanNumber" />
+                    </label>
+
+                    <br />
+                    <label>
+                        Dokumentflöde:
+                        <br />
+                        <input type="text" value="Ladda upp dokument" />
+                        <input type="text" value="Firmatecknare" />
+                        <input type="text" value="Personnummer" />
+                        <button type="button" value="Skicka för signering"></button>
+                        <p>Lägg till borgensman</p>
+                    </label>
+                    <br />
+                    <label>
+                        Bolagsnamn:
+                        <br />
+                        <input type="text" @bind="CreditDocument.CompanyName" />
+                    </label>
+                    <br />
+                    <label>
+                        Organisationsnummer:
+                        <br />
+                        <input type="text" @bind="CreditDocument.OrganizationNumber" />
+                    </label>
+                }
+                <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @onclick="Close">Close</button>
+                <button type="button" class="btn btn-primary" style=" background-color:  #870AA0;" @onclick="Save">Klar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+    [Parameter] public CreditDocument? CreditDocument { get; set; }
+    [Parameter] public EventCallback OnSave { get; set; }
+    [Parameter] public EventCallback OnDialogClose { get; set; }
+
+
+    private void Close()
+    {
+        IsOpen = false;
+        IsOpenChanged.InvokeAsync(IsOpen);
+    }
+
+    private async Task Save()
+    {
+        if (CreditDocument == null || CreditDocumentService == null)
+        {
+            Log.LogError("CreditDocument or CreditDocumentService is null.");
+            //Console.WriteLine("CreditDocument or CreditDocumentService is null.");
+            return;
+        }
+        await CreditDocumentService.UpdateCreditDocumentAsync(CreditDocument);
+        IsOpen = false; // Add this line to close the dialog box
+        await OnSave.InvokeAsync(CreditDocument);
+        await OnDialogClose.InvokeAsync();
+    }
+
+}

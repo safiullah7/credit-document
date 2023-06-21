@@ -1,0 +1,78 @@
+﻿@page "/"
+@using Blazorise
+@using SharedModels
+@using CreditDocumentFrontend.Pages.Components
+@using CreditDocumentFrontend.Services;
+@using Microsoft.Extensions.Configuration
+
+
+
+
+<div style="display: flex; align-items: center;" class="my-2">
+    <span class="heading">Ärende</span>
+    <hr style="flex-grow: 1; border: 0; border-top: 1px solid #000; margin:0 10px; background: #757575" />
+    <button @onclick="OpenNewCaseForm"
+            style="border: 2px solid #870AA0; background-color: transparent; color: #870AA0; padding: 10px 20px; border-radius: 10px;">
+        <img class="document-icon" src="/images/document-icon.svg" />
+        &nbsp;Lägg till ärende
+    </button>
+
+</div>
+
+<div style="align-self: flex-start; margin-top: 10px;">
+    <button @*@onclick="NewFunctionNameHere"*@
+            style="display: flex; flex-direction: row; align-items: center; padding: 3px 0px; gap: 20px; background: rgba(255, 0, 0, 0.25); border-radius: 10px; border: none; color: #FF0000; padding: 10px 20px;">
+        <img class="folder-icon" src="/images/folder-icon.svg" style="filter: hue-rotate(180deg);" />
+        Påminnelse 
+        <img class="right-icon" src="/images/right-icon.svg" style="filter: hue-rotate(180deg); margin-left: 5px;" />
+    </button>
+</div>
+
+<AddNewCase @bind-IsOpen="showNewCaseForm" OnSave="RefreshCreditDocuments" OnDialogClose="HandleModalClosed" />
+
+<!-- FilterComponent -->
+<div class="my-4">
+    <Filter />
+</div>
+
+<br>
+<h1>Credit Documents Dashboard</h1>
+<br>
+@if (creditDocuments == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <div class="flex-row">
+        <div class="custom-box new">
+            <h3>New</h3>
+            @RenderCreditDocuments(DocumentState.New)
+        </div>
+        <div class="custom-box underprocess">
+            <h3>Under Processing</h3>
+            @RenderCreditDocuments(DocumentState.UnderProcessing)
+            Four eye control
+        </div>
+        <div class="custom-box onhold">
+            <h3>On Hold</h3>
+            @RenderCreditDocuments(DocumentState.OnHold)
+            Skicka påminnelse
+        </div>
+        <div class="custom-box completed">
+            <h3>Completed</h3>
+            @RenderCreditDocuments(DocumentState.Completed)
+        </div>
+    </div>
+
+
+
+}
+
+<CreditDocumentDialog @bind-IsOpen="editDialogIsOpen" CreditDocument="selectedCreditDocument" OnSave="RefreshCreditDocuments" OnDialogClose="CloseEditDialog" />
+
+
+
+
+

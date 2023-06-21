@@ -1,0 +1,157 @@
+﻿@using Blazorise
+@using System.Globalization;
+@using Blazorise.Icons.FontAwesome
+@using SharedModels
+@using Microsoft.AspNetCore.Components.Forms
+
+<style>
+    input::placeholder {
+        color: red;
+        opacity: 1;
+    }
+</style>
+
+<Row JustifyContent="JustifyContent.End">
+    <Column Style="padding-right: 0">
+        <div class="d-flex flex-column gap-2">
+            <span class="filter-item-heading">Nyckelord</span>
+            <TextEdit Style="background: #FFFFFF; border: 1px solid #E7EBEE; border-radius: 10px 0px 0px 10px;"
+                      Placeholder="Search..." @bind-Text="@searchTerm" />
+        </div>
+    </Column>
+    <Column Style="padding-right: 0; padding-left: 0">
+        <div class="d-flex flex-column gap-2">
+            <span class="filter-item-heading">Företag</span>
+            <Dropdown @bind-Visible="showCompaniesDropdown">
+                <Blazorise.Button Style="border: 1px solid #E7EBEE; background: #FFFFFF; height: 38px;"
+                                  Clicked="() => showCompaniesDropdown = !showCompaniesDropdown">
+                    <div class="dropdown-activator">
+                        <span class="dropdown-activator-text">Alla</span>
+                        <div class="pr-3">
+                            <img class="arrow" src="/images/down-arrow.svg" />
+                        </div>
+                    </div>
+                </Blazorise.Button>
+                <DropdownMenu Style="border-radius: 20px;width: 372px; background: #FFFFFF; border: 1px solid #F2F2F2; padding: 21px 21px 10px 21px; margin-top:10px !important;">
+                    <div class="d-flex justify-content-between flex-column h-100">
+                        <div class="mb-3">
+                            @foreach (var company in companies)
+                            {
+                                <Blazorise.Check TValue="bool" Style="margin-bottom: 5px"
+                                             Checked="selectedCompanies.ContainsKey(company) && selectedCompanies[company]"
+                                             CheckedChanged="@((bool isChecked) => OnCompanyCheckedChanged(isChecked, company))">
+                                    <span class="check-label-custom">@company</span>
+                                </Blazorise.Check>
+                            }
+                        </div>
+                        <div>
+                            <DropdownDivider />
+                            <div class="d-flex justify-content-end gap-4 mt-2">
+                                <span class="footer-button" @onclick="() => showCompaniesDropdown = false">Close</span>
+                                <span class="footer-button" @onclick="ApplyFilter">OK</span>
+                            </div>
+                        </div>
+                    </div>
+                </DropdownMenu>
+            </Dropdown>
+        </div>
+    </Column>
+    <Column Style="padding-right: 0; padding-left: 0">
+        <div class="d-flex flex-column gap-2">
+            <span class="filter-item-heading">Regions</span>
+            <Dropdown @bind-Visible="showRegionsDropdown">
+                <Blazorise.Button Style="border: 1px solid #E7EBEE; background: #FFFFFF; height: 38px;"
+                                  Clicked="() => showRegionsDropdown = !showRegionsDropdown">
+                    <div class="dropdown-activator">
+                        <span class="dropdown-activator-text">Alla</span>
+                        <div class="pr-3">
+                            <img class="arrow" src="/images/down-arrow.svg" />
+                        </div>
+                    </div>
+                </Blazorise.Button>
+                <DropdownMenu Style="border-radius: 20px;width: 372px; background: #FFFFFF; border: 1px solid #F2F2F2; padding: 21px 21px 10px 21px; margin-top:10px">
+                    <div class="d-flex justify-content-between flex-column h-100">
+                        <div class="mb-3">
+                            @foreach (var region in regions)
+                            {
+                                <Blazorise.Check TValue="bool" Style="margin-bottom: 5px"
+                                             Checked="selectedRegions.ContainsKey(region) && selectedRegions[region]"
+                                             CheckedChanged="@((bool isChecked) => OnRegionCheckedChanged(isChecked, region))">
+                                    <span class="check-label-custom">@region</span>
+                                </Blazorise.Check>
+                            }
+                        </div>
+                        <div>
+                            <DropdownDivider />
+                            <div class="d-flex justify-content-end gap-4 mt-2">
+                                <span class="footer-button" @onclick="() => showRegionsDropdown = false">Close</span>
+                                <span class="footer-button" @onclick="ApplyFilter">OK</span>
+                            </div>
+                        </div>
+                    </div>
+                </DropdownMenu>
+            </Dropdown>
+        </div>
+    </Column>
+    <Column Style="padding-right: 0; padding-left: 0">
+        <Blazorise.Button Style="background: #870AA0;
+                                 border: 3px solid #870AA0;
+                                 border-radius: 0px 10px 10px 0px;width: 155px; color: #FFFFFF; margin-top: 30px;height: 38px;"
+                          Clicked="@ApplyFilter">
+            <span>Filter</span>
+            <img style="height: 16px; width: 16px;" src="/images/search-icon.svg" />
+        </Blazorise.Button>
+    </Column>
+</Row>
+
+@code {
+    private string searchTerm = string.Empty;
+    private List<string> companies = new List<string> { "Almi", "Almi Jönköping", "Almi Mälardalen", "Almi Uppsala" };
+    private List<string> regions = new List<string> { "Göteborg", "Jönköping", "Uppsala","Stockholm", "Växjö","Örebro", "Malmö" };
+    private Dictionary<string, bool> selectedCompanies = new Dictionary<string, bool>();
+    private Dictionary<string, bool> selectedRegions = new Dictionary<string, bool>();
+
+    private bool showCompaniesDropdown = false;
+    private bool showRegionsDropdown = false;
+
+    protected override void OnInitialized()
+    {
+    }
+
+    private void ApplyFilter()
+    {
+        //TODO
+        // Logic to apply the filter based on selectedCompanies and selectedRegions dictionaries.
+    }
+
+    private void OnCompanyCheckedChanged(bool isChecked, string company)
+    {
+        if (isChecked)
+        {
+            selectedCompanies[company] = true;
+        }
+        else
+        {
+            if (selectedCompanies.ContainsKey(company))
+            {
+                selectedCompanies.Remove(company);
+            }
+        }
+    }
+
+    private void OnRegionCheckedChanged(bool isChecked, string region)
+    {
+        if (isChecked)
+        {
+            selectedRegions[region] = true;
+        }
+        else
+        {
+            if (selectedRegions.ContainsKey(region))
+            {
+                selectedRegions.Remove(region);
+            }
+        }
+    }
+
+}

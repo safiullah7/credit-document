@@ -1,0 +1,145 @@
+﻿input:read-only {
+    background-color: #F7F9FA;
+    border: 1px solid #CFD9E0;
+    color: #414D63;
+}
+
+input {
+    border-radius: 4px;
+    border: 1px solid #CFD9E0;
+    padding: 5px;
+}
+
+.content {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Add a custom class for the row */
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Add a custom class for the columns */
+/*.flex-column {*/
+/*    flex: 1;*/
+/*    margin: 10px;*/
+/*    border: 1px solid #D0D0D0;*/
+/*    border-radius: 0 0 10px 10px;*/
+/*    min-height: 600px;*/
+/*}*/
+
+.custom-box {
+    flex: 1;
+    margin: 10px;
+    border: 1px solid #D0D0D0;
+    border-radius: 0 0 10px 10px;
+    min-height: 600px;
+}
+
+.flex-column h3 {
+        font-size: 18px;
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: 1px solid #D0D0D0
+}
+
+.new h3 {
+    border-top: 5px solid #FA9BF6;
+}
+
+.underprocess h3 {
+    border-top: 5px solid #77A0EF;
+}
+
+.onhold h3 {
+    border-top: 5px solid #F8CD61;
+}
+
+.completed h3 {
+    border-top: 5px solid #8FDBA5;
+}
+
+.col-md-3 {
+    border: 1px solid #D0D0D0;
+    border-radius: 10px;
+    min-height: 600px;
+}
+
+.credit-document {
+    display: block;
+    padding: 10px 20px;
+    color: #000;
+    border-radius: 10px;
+    text-align: left;
+    cursor: pointer;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    .credit-document .Date {
+        color: #848484;
+        float:right;
+        font-size:13px;
+    }
+
+    .credit-document .CompanyName {
+        color: #848484;
+        font-size:16px;
+    }
+
+    .credit-document .LoanNumber {
+        font-size: 20px;
+    }
+
+.new .credit-document {
+    background: rgba(250, 155, 246, 0.1);
+}
+
+.underprocess .credit-document {
+    background: rgba(119, 160, 239, 0.1);
+}
+
+.onhold .credit-document {
+    background: rgba(248, 205, 97, 0.15);
+}
+
+.completed .credit-document {
+    background: rgba(171, 228, 188, 0.2);
+}
+
+.col-md-3:not(:last-child) {
+    margin-right: 10px;
+}
+
+/*.credit-document .Name {
+    color: #848484;
+    font-size: 16px;
+}
+*/
+.credit-document .name-row {
+    display: flex;
+    align-items: center;
+    color: #848484;
+    font-size: 14px;
+}
+
+.credit-document .name-row .checkmark {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: green;
+        color: white;
+        text-align: center;
+        line-height: 10px;
+        margin-right: 5px;
+}
+
+.full-width {
+    width: 100%;
+}

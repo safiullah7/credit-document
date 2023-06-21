@@ -1,0 +1,96 @@
+﻿@*
+<Div style="background-color: #F2F2F2">
+    <Row Width="Width.Is100">
+        <Column ColumnSize="ColumnSize.Is4">
+            <div class="col">
+                <img style="margin-left: 35px;" class="mt-4 center-logo" src="/AlmiLoga 21.svg" />
+            </div>
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4">
+            <Div class="mt-2 text-center">
+                <a href="preview"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-center">
+                    <a href="preview" target="_blank" style=" color: #6C757D;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                        </svg>
+                    </a>
+
+                <h6 style="color: #6C757D">
+                    Preview
+                </h6>
+                </a>
+            </Div>
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4">
+            <Div class="d-flex justify-content-end mt-4 mb-3 me-3">
+
+                <AuthorizeView>
+                    <Authorized>
+                        <div class="me-3 pt-1">
+                            Hello, @context.User.Identity?.Name!
+                        </div>
+
+                        <a class="btn-logout" href="MicrosoftIdentity/Account/SignOut">Logga ut</a>
+
+                        <div class="ms-2 btn-support">
+                            <a class="btn" href="https://it.almi.se/Tickets/New" target="_blank" rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-headset" viewBox="0 0 16 16">
+                                    <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z" />
+                                </svg>
+                                Support
+                            </a>
+                        </div>
+                    </Authorized>
+                    <NotAuthorized>
+                        <a class="ms-2 btn-logout" href="MicrosoftIdentity/Account/SignIn">Logga in</a>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </Div>
+        </Column>
+    </Row>
+</Div>*@
+
+<div class="container-fluid top-nav" id="color-nav">
+    <div class="nav-bar">
+        <div class="logo-section">
+            <img class="center-logo" src="/AlmiLoga 21.svg"/>
+        </div>
+        <div class="navigation">
+            <nav class="nav-element">
+              <a class="nav-item selected-nav-item" href="/">Ärende</a>
+              <a class="nav-item" href="/">Arkiv</a>
+            </nav>
+        </div>
+        <div class="right-section">
+            @*  <AuthorizeView>
+                    <Authorized>*@
+            <div class="me-3 username-text">
+                Välkommen, UserName @*@context.User.Identity?.Name!*@
+            </div>
+            <div class="logout-div">
+                <img src="/images/logout-icon.svg"/>
+                <span class="logout-text">Logga ut</span>
+            </div>
+
+            @*<a class="btn-logout me-2" href="MicrosoftIdentity/Account/SignOut">Logga ut</a>*@
+            @*
+                        <div class="btn-support">
+                            <a class="btn" href="https://it.almi.se/Tickets/New" target="_blank" rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-headset" viewBox="0 0 16 16">
+                                    <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z" />
+                                </svg>
+                                Support
+                            </a>
+                        </div>*@
+            @*     </Authorized>*@
+            @*   <NotAuthorized>
+                        <a class="btn-logout" href="MicrosoftIdentity/Account/SignIn">Log in</a>
+                    </NotAuthorized>
+                </AuthorizeView>*@
+        </div>
+    </div>
+</div>

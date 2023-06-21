@@ -1,0 +1,62 @@
+﻿@using SharedModels
+@using CreditDocumentFrontend.Services;
+@using Microsoft.AspNetCore.Components
+@inject CreditDocumentService CreditDocumentService
+@inject CreditDocumentFrontend.Services.CreditDocumentService CreditDocumentService
+@using Blazorise
+
+@inject IJSRuntime JSRuntime
+
+@inject ILogger<AddNewCase> Log
+
+@if (IsOpen)
+{
+    <div class="modal" style="display: @(IsOpen ? "block" : "none")">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div>
+                    <span class="fw-500 text-heading">Nytt ärende</span>
+
+                    <Button Type="ButtonType.Button" Clicked="CloseModal">
+                        <img class="cross" src="/images/cross-icon.svg"/>
+                    </Button>
+                </div>
+                <div class="form-body">
+                    <div class="w-100">
+                        <CascadingValue Value="CreditDocument">
+                            <Steps SelectedStep="@_selectedStep" SelectedStepChanged="@OnSelectedStepChanged">
+                                <Items>
+                                    <Blazorise.Step Name="step1"></Blazorise.Step>
+                                    <Blazorise.Step Name="step2"></Blazorise.Step>
+                                    <Blazorise.Step Name="step3"></Blazorise.Step>
+                                </Items>
+
+                                <Content>
+                                    <StepPanel Name="step1">
+                                        <Blazorise.ModalBody>
+                                            <AddNewCaseStep1 CloseModal="CloseModal"
+                                                             GoToStep2="GoToStep2"/>
+                                        </Blazorise.ModalBody>
+                                    </StepPanel>
+                                    <StepPanel Name="step2">
+                                        <Blazorise.ModalBody>
+                                            <AddNewCaseStep2 CloseModal="CloseModal"
+                                                             GoToStep3="GoToStep3"/>
+                                        </Blazorise.ModalBody>
+                                    </StepPanel>
+                                    <StepPanel Name="step3">
+                                        <Blazorise.ModalBody>
+                                            <AddNewCaseStep3 CloseModal="CloseModal"
+                                                             GoToStep3="GoToStep3"/>
+                                        </Blazorise.ModalBody>
+                                    </StepPanel>
+                                </Content>
+                            </Steps>
+                        </CascadingValue>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
